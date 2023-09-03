@@ -1,6 +1,6 @@
 schema_version: "v1"
 name_for_human: "Plugin Demo"
-name_for_model: "Plugin Demo dev"
+name_for_model: "Plugin_Demo_dev"
 # leave logo_url commented to fill it out from settings
 # logo_url: "https://example.com/logo.png"
 contact_email: "author@example.com"
