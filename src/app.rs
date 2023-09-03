@@ -5,7 +5,7 @@ use poem_openapi::OpenApiService;
 pub fn build_app() -> Route {
     let settings = get_settings();
 
-    let public_url = settings.public_url.clone();
+    let public_url = settings.public_url.join("/api").unwrap();
     let api_service = OpenApiService::new(Api, "Plugin Server", "1.0").server(public_url);
     let ui = api_service.swagger_ui();
     let spec = api_service.spec_endpoint();

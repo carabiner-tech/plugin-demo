@@ -30,12 +30,12 @@ impl Manifest {
         let settings = get_settings();
 
         let builder = config::Config::builder()
-            .set_default("logo_url", settings.clone().logo_url().to_string())
+            .set_default("logo_url", settings.logo_url().to_string())
             .unwrap()
-            .set_default("api.url", settings.clone().openapi_json_url().to_string())
+            .set_default("api.url", settings.openapi_json_url().to_string())
             .unwrap()
             .add_source(config::File::with_name("src/manifest/manifest.yml"))
-            .add_source(config::Environment::with_prefix("MANIFEST").separator("."))
+            .add_source(config::Environment::with_prefix("MANIFEST").separator("_"))
             .build()
             .expect("Error building manifest config from file and env");
         let manifest: Self = builder
@@ -43,7 +43,7 @@ impl Manifest {
             .expect("Error converting config into Manifest struct");
         manifest
             .auth
-            .clone()
+            .clone() // TODO: Is there a better way to do this, without cloning?
             .validate()
             .expect("Error validating auth section");
         manifest
